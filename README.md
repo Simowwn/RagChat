@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -39,3 +40,6 @@ npx create-next-app rag-chat
 cd rag-chat
 
 npm install langchain openai pdf-parse chromadb
+=======
+# RagChat
+>>>>>>> 59e73b36b3aacf2ca9f33343c3e2127e8975fb2a
