@@ -9,8 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@langchain/core": "^1.1.9",
+    "@langchain/openai": "^1.2.1",
     "chromadb": "^3.2.0",
-    "langchain": "^1.2.3",
+    "langchain": "^1.2.4",
     "next": "16.1.1",
     "openai": "^6.15.0",
     "pdf-parse": "^2.4.5",
