@@ -1,16 +1,26 @@
 import { OpenAIEmbeddings } from "@langchain/openai";
-import { MemoryVectorStore } from "langchain/vectorstores/memory";
+import { Chroma } from "langchain/vectorstores/chroma";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
 export const embeddings = new OpenAIEmbeddings({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export let vectorStore: MemoryVectorStore | null = null;
+let vectorStore: Chroma | null = null;
 
 export async function createVectorStore(text: string) {
-  vectorStore = await MemoryVectorStore.fromTexts(
-    [text],
-    [{ source: "uploaded-document" }],
-    embeddings
-  );
+  const splitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 1000,
+    chunkOverlap: 200,
+  });
+
+  const docs = await splitter.createDocuments([text]);
+
+  vectorStore = await Chroma.fromDocuments(docs, embeddings, {
+    collectionName: "documents",
+  });
+}
+
+export async function getVectorStore() {
+  return vectorStore;
 }
